@@ -74,10 +74,13 @@ export default function Home() {
 						type='text'
 						value={input}
 						onChange={(e) => setinput(e.target.value)}
-						placeholder='Search by name'
+						placeholder='Search by Name'
 
 					/>
 				</div>
+					<div>
+				<PokeGrid pokemon={currentpokemons} input={input} />
+					</div>
 				<div>
 				{Array.from(
 						{
