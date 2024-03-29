@@ -77,17 +77,9 @@ export default function Home() {
 	return (
 		<>
 			<div>
-				<div className='container mt-5'>
-					<input
-						type='text'
-						value={input}
-						onChange={(e) => setinput(e.target.value)}
-						placeholder='Search by Name'
-
-					/>
-				</div>
+				<div style={{marginTop: '100px'}}></div>
 					<div>
-				<PokeGrid pokemon={pokemon} input={input} />
+						<PokeGrid pokemon={pokemon} input={input} />
 					</div>
 				<div>
 				<div className='load-btn'>

@@ -1,25 +1,31 @@
 import React, { useEffect, useState } from 'react'
 import PokeCard from './PokeCard';
 
+import LOADER from './PokeCard';
+
 
 export default function SearchBar() {
 
   const [input, setInput] = useState("");
   const [results, setResults] = useState([]);
+  const [loading, setLoading] = useState(false);
+
 
   const handleChange = (e)=>{
     setInput(e.target.value);
   }
 
   useEffect(() => {
+    setLoading(true);
 		const fetchPokemon = () => {
 			const promises = [];
 			// for (let i = 1; i <= 100; i++) {
-				const url = `https://pokeapi.co/api/v2/pokemon/${input}`;
+				const url = `https://pokeapi.co/api/v2/pokemon/${input.toLocaleLowerCase()}`;
 				promises.push(fetch(url).then((res) => res.json()));
 			// }
       var fetchedPokemon
 			Promise.all(promises).then((results) => {
+        setLoading(false);
         if(results[0].name){
           fetchedPokemon = results.map((result) => ({
             name: (result.name),
@@ -36,6 +42,7 @@ export default function SearchBar() {
           }));
           console.log(fetchedPokemon);
 				  setResults(fetchedPokemon);
+          setLoading(false);
         }
         else{
           setResults()
@@ -45,18 +52,35 @@ export default function SearchBar() {
 		};
 		
 		fetchPokemon();
+    setLoading(true)
 	}, [input]);
 
   return (
-    <div>
-       <input onChange={handleChange} value={input}/>
-       {/* {notFound()} */}
-      {/* {handleClick()} */}
+    <>
+    <div className='search-home'>
+					<img className='search-icon' src='https://media3.giphy.com/media/XwENvq9FeAr7zd3QD8/giphy.gif?cid=6c09b952c5vao29fbygy41nsb40q5okchseey4q0jcj823nn&ep=v1_stickers_related&rid=giphy.gif&ct=s' alt='pokeball'/>
+					<input
+						className='home-search-bar'
+						type='text'
+						value={input}
+						onChange={handleChange} 
+						placeholder='Search by Name or No'
+					/>
+				</div>
+    {
+      !loading ?
+      <div className='search-cont'>
+
+      
       {
-        results!==undefined && results.length !==0 ? <PokeCard name={results[0].name} type={results[0].type} img={results[0].image}/> : <h1>NULL</h1>
+        results!==undefined && results.length !==0 ? <PokeCard className='position-relative' name={results[0].name} type={results[0].type} img={results[0].image}/> : <h1>NULL</h1>
       }
-      {/* <PokeCard name={results.name} type={type} img={img}/> */}
-      {/* <button type='button' onClick={handleClick}>Search</button> */}
     </div>
+    :
+    <div className='loader-cont'>
+        <img src={LOADER} alt='Loading...' style={{width: '50px'}}/>
+    </div>
+}
+</>
   )
 }
