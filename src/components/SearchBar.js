@@ -1,17 +1,11 @@
 import React, { useEffect, useState } from 'react'
 import PokeCard from './PokeCard';
-import PokeGrid from './PokeGrid'
 
 
 export default function SearchBar() {
 
   const [input, setInput] = useState("");
   const [results, setResults] = useState([]);
-
-  const [img, setImg] = useState('');
-
-  const [type, setType] = useState([]);
-  var arr = [];
 
   const handleChange = (e)=>{
     setInput(e.target.value);
@@ -53,11 +47,6 @@ export default function SearchBar() {
 		fetchPokemon();
 	}, [input]);
 
-
-  const notFound = ()=>{
-    return <h1>notFound</h1>
-  }
-
   return (
     <div>
        <input onChange={handleChange} value={input}/>
@@ -68,16 +57,6 @@ export default function SearchBar() {
       }
       {/* <PokeCard name={results.name} type={type} img={img}/> */}
       {/* <button type='button' onClick={handleClick}>Search</button> */}
-      <ul>
-        {/* {
-           results ?
-          Object.values(results)[16].map((type) => 
-          
-             <li> {type.type.name} </li>
-          ):
-          ''
-        } */}
-      </ul>
     </div>
   )
 }
