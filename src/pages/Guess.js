@@ -1,15 +1,15 @@
 import React, { useState } from 'react'
+import Typewriter from 'typewriter-effect';
+
 
 import LOADER from '../gif/loader.gif'
 import WIN from '../gif/win.gif'
+import NEXT from '../gif/next.gif'
+import WRONG from '../gif/wrong.gif'
 
 export default function Guess() {
 
-    // console.log(Math.floor(Math.random() * (1000 - 1)) + 1);
     const v = Math.floor(Math.random() * (1000 - 1)) + 1;
-
-
-
 
     const [img, setImg] = useState(`https://assets.pokemon.com/assets/cms2/img/pokedex/full/${v < 10
     ? '00' + v
@@ -18,16 +18,9 @@ export default function Guess() {
     : +v}.png`);
     const [name, setName] = useState('');
     const [input, setInput] = useState('');
-    const [check, setCheck] = useState(false);
+    const [check, setCheck] = useState(-1);
+
     const [loading, setLoading] = useState(false);
-
-    // useEffect (() => {
-    //   setLoading(true);
-    //   setTimeout(() => {
-    //     setLoading(false)
-    //   }, 2500);
-    // }, []);
-
 
     const reset = ()=>{
         setLoading(true);
@@ -41,19 +34,24 @@ export default function Guess() {
                 // console.log(result);
                 setLoading(false);
                 setName(result.name)});
-        setCheck(false);
+        setCheck(-1);
         setInput('');
-        setCheck(false);
+        // setCheck(0);
     }
 
     const handleClick = (()=>{
         setLoading(true);
-        if(name === input.toLocaleLowerCase()){
-            setCheck(true);
-            console.log(name);
+        if(name === input.toLocaleLowerCase() && input.length > 0){
+            setCheck(1);
+            setTimeout(() => {
+                setCheck(-1);
+            }, 10000)
         }
         else{
-            setCheck(false);
+            setCheck(0);
+            setTimeout(() => {
+                setCheck(-1);
+            }, 10000);
         }
         setLoading(false);
 
@@ -70,26 +68,62 @@ export default function Guess() {
         }
     }
 
+    const bgImg = (()=>{
+        if(check === 1){
+            return WIN
+        }
+        else if(check===0){
+           return WRONG
+        }
+        else{
+           return ''
+        }
+    })
+
+    console.log(bgImg());
 
   return (
     <>  
         {
             !loading ?
 
-        <div className='container guess-cont' style={{backgroundImage: check? `url(${WIN})`: '',     backgroundPosition: 'center'}}>
+            <div className='guess-cont position-relative' style={{backgroundImage: `url(${bgImg()})`,     backgroundPosition: 'center'}}>
 
         <div>
-            <h1>Guess</h1>
+        <h1>
+                Guess the Pokemon&#160;
+                <Typewriter
+                    options={{
+                        strings: ['Bulbasaur', 'Charizard', 'Pikachu', 'Mewtwo'],
+                        autoStart: true,
+                        loop: true,
+                    }}
+/>
+            </h1>
         </div>
 
-            <div className="guess-form">
-                    <i className="fa fa-search"></i>
-                    <input type='text' value={input} onChange={(e)=>(setInput(e.target.value))} onKeyDown={handleKeyDown} />
-                    <span className="left-pan"><i className="fa fa-microphone"></i></span>
-                </div>
+            <<div className='search-home guess-form mt-0'>
+					<img style={{ width: '61px', marginLeft: '-5px'}} className='search-icon' src='https://i.pinimg.com/originals/43/f8/7b/43f87bf85fd8ec237f5ce8af1634692f.gif' alt='pokeball'/>
+					<input
+						className='home-search-bar'
+						type='text'
+						value={input}
+						onChange={(e)=>(setInput(e.target.value))}
+                        onKeyDown={handleKeyDown} 
+						placeholder='Guess the name'
+                        style={{paddingLeft: '50px'}}
+					/>
 
-                <div className='check-btn'>
-                    <button type='button' onClick={handleClick}>Check</button>
+		</div>
+        <div className='action-btn'>
+                <div className='check-btn-cont'>
+                    <button className='check-btn' type='button' onClick={handleClick}>CHECK</button>
+                </div>
+                <div className='reset-btn'>
+                    <button type='button' className='next-btn' onClick={reset}>NEXT </button>
+                    <img src={NEXT} className='next-img'/>
+                </div>
+               
                 </div>
 
                 <div className='guess-img-cont'>

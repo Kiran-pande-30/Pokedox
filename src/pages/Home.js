@@ -77,7 +77,7 @@ export default function Home() {
 	return (
 		<>
 			<div>
-				<div style={{marginTop: '100px'}}></div>
+				<div style={{marginTop: '100px'}}>
 					<div>
 						<PokeGrid pokemon={pokemon} input={input} />
 					</div>
@@ -86,23 +86,6 @@ export default function Home() {
 					<button type='button' onClick= {less}>Load Less</button>
 					<button type='button' onClick= {more} >Load More</button>
 				</div>
-
-				{/* {Array.from(
-						{
-							length: Math.ceil(
-								filteredpokemons.length / pokemonsPerPage
-							),
-						},
-						(_, index) => (
-							<button
-								key={index}
-								onClick={() =>
-									handlePageChange(index + 1)
-								}>
-								{index + 1}
-							</button>
-						)
-					)} */}
 				</div>
 			</div>
 		</>

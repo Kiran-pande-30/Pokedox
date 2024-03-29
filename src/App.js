@@ -7,7 +7,8 @@ import SearchBar from './components/SearchBar';
 import Guess from './pages/Guess';
 import Navbar from './components/Navbar';
 
-import BG_VID from '../src/Videos/bg-2.mp4'
+import BG_VID from '../src/Videos/bg-2.mp4';
+import Footer from './components/Footer';
 
 
 
@@ -24,6 +25,7 @@ function App() {
         <Route path='/search' element={<SearchBar/>}/>
         <Route path='/guess' element={<Guess/>}/>
       </Routes>
+      <Footer/>
     </>
   );
 }
