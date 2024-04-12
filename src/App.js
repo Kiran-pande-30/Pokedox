@@ -1,5 +1,4 @@
 import './App.css';
-
 import { Route, Routes } from 'react-router-dom';
 import Home from './pages/Home';
 import Favourite from './pages/Favourite';
@@ -10,8 +9,6 @@ import Navbar from './components/Navbar';
 import BG_VID from '../src/Videos/bg-2.mp4';
 import Footer from './components/Footer';
 
-
-
 function App() {
   return (
     <>
@@ -20,13 +17,15 @@ function App() {
       </video>
       <Navbar />
       <Routes>
-        <Route path="/" element = {<Home/>} />
-        <Route path='/favourite' element={<Favourite/>}/>
-        <Route path='/search' element={<SearchBar/>}/>
-        <Route path='/guess' element={<Guess/>}/>
-      </Routes>
-      <Footer/>
+      
+      <Route path="/" element={<Home/>} />
+      <Route path='/favourite' element={<Favourite/>}/>
+      <Route path='/search' element={<SearchBar/>}/>
+      <Route path='/guess' element={<Guess/>}/>
+    </Routes>
+    <Footer/>
     </>
+    
   );
 }
 

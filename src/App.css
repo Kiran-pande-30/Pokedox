@@ -11,14 +11,14 @@ h1{
 
 .poke-container{
   display: flex;
-  justify-content: space-between;
-  flex-wrap: wrap;
+    justify-content: space-around;
+    flex-wrap: wrap;
 }
 
 .card{
   margin-bottom: 40px;
   background: #ffffff2b;
-  backdrop-filter: blur(50px);
+    backdrop-filter: blur(50px);
 }
 
 .card-body{
@@ -33,11 +33,7 @@ h1{
 
 .type{
   margin-right: 10px;
-  margin-right: 10px;
   font-weight: bold;
-  /* position: fixed; */
-  /* width: 100%;
-  max-width: 640px; */
 }
 
 .type-cont{
@@ -45,43 +41,8 @@ h1{
   align-items: center;
 }
 
-
-.navbar {
-  position: fixed;
-    border: 0;
-    border-radius: 3px;
-    width: 100%;
-    top: 0;
-    padding: 0.625rem 0;
-    /* margin-bottom: 20px; */
-    color: #555 !important;
-    background-color: #ffffff29 !important;
-    -webkit-backdrop-filter: blur(10px);
-    backdrop-filter: blur(10px);
-    /* box-shadow: 0 4px 18px 0 rgba(0,0,0,.12), 0 7px 10px -5px rgba(0,0,0,.15) !important; */
-    z-index: 1000 !important;
-    transition: all 150ms ease 0s;
-}
-
-.bg-video{
-  position: fixed;
-  min-height: 100%;
-  min-width: 100%;
-  top: 0;
-}
-
-.bg-video{
-  position: fixed;
-  min-height: 100%;
-  min-width: 100%;
-  top: 0;
-}
-
-
-
 .type-img{
   width: 20px;
-  margin-right: 10px;
   margin-right: 5px;
 }
 
@@ -92,11 +53,14 @@ h1{
   padding-top: 20px;
   margin-left: 20px;
   margin-right: 20px;
+  /* opacity: 0.5; */
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin-top: 80px;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 80px;
 }
+
+
 
 @media screen and (max-width: 500px) {
   .guess-img{
@@ -117,13 +81,39 @@ h1{
   max-width: 640px;
 }
 
+
+.navbar {
+  position: fixed;
+    border: 0;
+    border-radius: 3px;
+    width: 100%;
+    top: 0;
+    padding: 0.625rem 0;
+    /* margin-bottom: 20px; */
+    color: #555 !important;
+    background-color: #ffffff29 !important;
+    -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(10px);
+    /* box-shadow: 0 4px 18px 0 rgba(0,0,0,.12), 0 7px 10px -5px rgba(0,0,0,.15) !important; */
+    z-index: 1000 !important;
+    transition: all 150ms ease 0s;
+  
+}
+
+
+.bg-video{
+  position: fixed;
+  min-height: 100%;
+  min-width: 100%;
+  top: 0;
+}
+
 .load-btn{
   position: relative;
   display: flex;
   align-items: center;
   justify-content: space-around;
 }
-
 
 .card-img-cont{
   border: 0px solid;
@@ -184,7 +174,7 @@ h5{
 
 .check-btn-cont{
   margin-right: 100px;
-
+  
 }
 
 .next-img{
@@ -193,7 +183,7 @@ h5{
   margin-left: -40px;
   margin-top: 2px;
   filter: invert(1);
-
+  
 }
 
 .next-btn:hover{
@@ -209,7 +199,7 @@ h5{
   padding-right: 30px;
   font-weight: bold;
   background: #fff;
-
+  
 }
 
 .check-btn{
@@ -241,5 +231,3 @@ h5{
 .footer p{
   margin: 4px;
 }
-
-
