@@ -22,14 +22,14 @@ import Water from '../images/WaterType.png'
 
 export default function PokeCard({img, name, type}) {
   // console.log(type);
-  var textCol = 'black'
+
+  var textCol = 'black';
 
   const pokeType = (type) => {
     if(type === "grass"){
       textCol = '#63bc5d'
       return Grass;
     }
-
     else if(type==='poison'){
       textCol = '#b667cd'
       return Poison;
@@ -59,7 +59,7 @@ export default function PokeCard({img, name, type}) {
       return Psychic;
     }
     else if(type==='rock'){
-      extCol = '#b667cd'
+      textCol = '#b667cd'
       return Rock;
     }
     else if(type==='ground'){
@@ -112,20 +112,20 @@ export default function PokeCard({img, name, type}) {
   return (
     <>
         <div className="card" style={{width: '18rem'}}>
-        <div className='card-img-cont' style={{backgroundImage:`url(https://pokemon.gameinfo.io/images/game/details_type_bg_${type[0]}.png)`, backgroundSize: 'contain'}}></div>
-          <img src={img} className="card-img-top" alt={name} />
+        <div className='card-img-cont' style={{backgroundImage:`url(https://pokemon.gameinfo.io/images/game/details_type_bg_${type[0]}.png)`, backgroundSize: 'contain'}}>
+        <img src={img}  className="card-img-top" alt={name} />
         </div>
         <div className="card-body">
             <h5 className="card-title">{name}</h5>
             <div className='type-cont'> 
             {/* <span className='type'>Type: </span>  */}
               {type.map((item)=>{
-
+                
                 return(
-                  <>
+                    <>
                     <img src={pokeType(item)} className='type-img' alt={item} />
                     <span className='type' >{capitalizeFirstLetter(item)}</span>
-                  </>
+                    </>
                   )
               })} 
               </div>

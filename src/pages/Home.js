@@ -3,15 +3,13 @@
 import React, { useEffect, useState } from 'react';
 import PokeGrid from '../components/PokeGrid';
 
-
 export default function Home() {
-	//const [currentPage, setCurrentPage] = useState(1);
+	// const [currentPage, setCurrentPage] = useState(1);
 	const [input, setinput] = useState('');
-	//const pokemonsPerPage = 12;
-
+	// const pokemonsPerPage = 12;
 	const [pokemon, setPokemon] = useState([]);
 	const [index, setIndex] = useState(12);
-	
+
 	function capitalizeFirstLetter(string) {
 		return string.charAt(0).toUpperCase() + string.slice(1);
 	}
@@ -23,7 +21,7 @@ export default function Home() {
 		if(index>=12){
 			setIndex(index - 12);
 		}
-
+		
 	}
 
 	useEffect(() => {
@@ -33,7 +31,6 @@ export default function Home() {
 				const url = `https://pokeapi.co/api/v2/pokemon/${i}`;
 				promises.push(fetch(url).then((res) => res.json()));
 			}
-			
 			Promise.all(promises).then((results) => {
 				const fetchedPokemon = results.map((result) => ({
 					name: capitalizeFirstLetter(result.name),
@@ -52,7 +49,7 @@ export default function Home() {
 				setPokemon(fetchedPokemon);
 			});
 		};
-    // console.log(pokemon);
+		// console.log(pokemon);
 		fetchPokemon();
 	}, [index]);
 
@@ -67,7 +64,6 @@ export default function Home() {
 
 	// useEffect(() => {
 	// 	setCurrentPage(1);
-
 	// }, [input]);
 
 	// const handlePageChange = (pageNumber) => {
@@ -76,16 +72,21 @@ export default function Home() {
 
 	return (
 		<>
-			<div>
-				<div style={{marginTop: '100px'}}>
-					<div>
-						<PokeGrid pokemon={pokemon} input={input} />
-					</div>
+			<div style={{marginTop: '100px'}}>
 				<div>
-				<div className='load-btn'>
-					<button type='button' onClick= {less}>Load Less</button>
-					<button type='button' onClick= {more} >Load More</button>
+					<PokeGrid pokemon={pokemon} input={input} />
 				</div>
+				<div className='load-btn'>
+				<button className="btn " type="button"  onClick= {less}>
+					<span className="spinner-border spinner-border-sm " aria-hidden="true" style={{marginRight: '10px'}}></span>
+					Load Less
+				</button>
+				<button className="btn " type="button" onClick= {more}>
+					<span className="spinner-border spinner-border-sm active"   aria-hidden="true" style={{marginRight: '10px'}}></span>
+					Load More
+				</button>
+					{/* <button type='button' onClick= {less}>Load Less </button>
+					<button type='button' onClick= {more} >Load More</button> */}
 				</div>
 			</div>
 		</>
